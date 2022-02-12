@@ -1,25 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import PostMain from "./Posts/PostMain";
+import Header from "./Header/Header";
+import AddNew from "./AddNew/AddNew";
+import './index.css'
+import './primitiveui.css'
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <>
+            <Header/>
+            <div className='App'>
+                <AddNew/>
+
+                <PostMain/>
+            </div>
+        </>
+    )
 }
 
 export default App;
