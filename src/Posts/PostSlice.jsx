@@ -1,4 +1,4 @@
-import {createSlice , createAsyncThunk , createEntityAdapter} from "@reduxjs/toolkit";
+import {createSlice, createAsyncThunk, createEntityAdapter, createSelector} from "@reduxjs/toolkit";
 import {Server} from "../Database/Server";
 import LocalGetNewData from "../AddNew/LocalGetNewData";
 
@@ -17,7 +17,6 @@ export const SendPost = createAsyncThunk('SendPost' , (Params)=> {
 
 
 const PostsAdapter = createEntityAdapter({
-    sortComparer : (a, b) => {}
 })
 
 const initialState = PostsAdapter.getInitialState({
@@ -34,10 +33,32 @@ export const {
 
 
 
+export const ShowPostsForEachUsers = createSelector (
+    [SelectAllPosts , (state , UserIds)=> UserIds] ,
+
+
+    (AllPosts , UsersIds)=>{
+
+        return AllPosts.filter(posts => posts.usersId === UsersIds)
+
+    }
+)
+
+
+
+
+
 const PostSlice = createSlice({
     name : 'Posts',
     initialState ,
-    reducers : {},
+    reducers : {
+        IncreaseReaction(state , action)
+        {
+            const {KeyEachReactions , PostId} = action.payload
+            state.entities[PostId].reactions[KeyEachReactions] += 1
+            // console.log(action.payload)
+        }
+    },
     extraReducers : {
         [GetPosts.pending] : (state) =>{
             state.status  = 'pending'
@@ -58,13 +79,16 @@ const PostSlice = createSlice({
             state.status = 'success'
             PostsAdapter.addOne = action.payload
 
-            console.log(action.payload)
+            // console.log(action.payload)
         },
-        [SendPost.rejected] : (state , action) => {
+        [SendPost.rejected] : (state , action) =>
+        {
             // console.log(action)
-        }
+        },
     }
 
 })
 
 export default PostSlice.reducer
+
+export const {IncreaseReaction} = PostSlice.actions

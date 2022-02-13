@@ -1,17 +1,16 @@
 import {useSelector} from "react-redux";
 import {SelectPostsByIds} from "./PostSlice";
-import PostsTime from "./PostsTime";
 import PostsName from "./PostsName";
+import PostsTime from "./PostsTime";
 import PostReaction from "./PostReaction";
-import {Link} from "react-router-dom";
+import {useParams} from "react-router-dom";
 
-
-
-export default function PostsShow({PostIds})
+export default function ViewPost ()
 {
+    const {PostIds} = useParams()
+
     const PostsItems = useSelector(state => SelectPostsByIds(state , PostIds))
     // console.log(PostsItems)
-
 
     const { id , content , date , reactions , title , usersId } = PostsItems
 
@@ -30,12 +29,7 @@ export default function PostsShow({PostIds})
                 <p className="post-content">{content}</p>
                 <PostReaction Reactions={reactions} PostId={id}/>
 
-
-                <Link className="button muted-button" to={`/posts/${PostIds}`} dideo-checked="true">View Post</Link>
-
             </article>
-
-
         </section>
     )
 }

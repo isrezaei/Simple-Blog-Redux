@@ -4,21 +4,17 @@ import {GetPosts, SelectPostsIds} from "./PostSlice";
 import PostsShow from "./PostsShow";
 import {useEffect} from "react";
 import {GetUsers} from "../Users/UserSlice";
+import AddNew from "../AddNew/AddNew";
 
 
 export default function PostMain ()
 {
 
     const PostsIds = useSelector(SelectPostsIds)
-
     const Status = useSelector(state => state.PostSlice.status)
-
 
     const dispatch = useDispatch()
     // console.log(PostsIds)
-
-
-    console.log(Status)
 
 
 
@@ -46,6 +42,7 @@ export default function PostMain ()
 
     return (
         <>
+            <AddNew/>
             {Renders}
         </>
     )
