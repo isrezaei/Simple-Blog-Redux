@@ -5,5 +5,5 @@
   Because I did not use a real server and random data was used
 For this reason, when refreshing the page in the user component, the previous information may be lost </p>
 
-<img alt="SimpleBlogPosts" src="./SimpleBlogPosts.PNG">
+
 
