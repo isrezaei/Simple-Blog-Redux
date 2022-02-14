@@ -11,20 +11,18 @@ export default function PostMain ()
 {
 
     const PostsIds = useSelector(SelectPostsIds)
+    // console.log(PostsIds)
     const Status = useSelector(state => state.PostSlice.status)
 
     const dispatch = useDispatch()
-    // console.log(PostsIds)
 
 
-
+    //start first dispatching for running thunk middleware
     useEffect(()=> {
-
         if (Status === 'idle') {
             dispatch(GetPosts())
             dispatch(GetUsers())
         }
-
     } , [dispatch , Status])
 
 
@@ -38,7 +36,6 @@ export default function PostMain ()
         {
             Renders = PostsIds.map(Ids => <PostsShow key={Ids} PostIds={Ids}/>)
         }
-
 
     return (
         <>

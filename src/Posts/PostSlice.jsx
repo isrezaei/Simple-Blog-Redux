@@ -2,50 +2,35 @@ import {createSlice, createAsyncThunk, createEntityAdapter, createSelector} from
 import {Server} from "../Database/Server";
 import LocalGetNewData from "../AddNew/LocalGetNewData";
 
-
-
 export const GetPosts = createAsyncThunk('GetPosts' , ()=> {
-
    return Server().then(Response => Response.posts)
 })
 
 export const SendPost = createAsyncThunk('SendPost' , (Params)=> {
-
     return LocalGetNewData(Params).then(Response => Response.posts)
-
 })
 
-
-const PostsAdapter = createEntityAdapter({
-})
+const PostsAdapter = createEntityAdapter()
 
 const initialState = PostsAdapter.getInitialState({
     status : 'idle'
 })
 
 export const {
-
     selectIds : SelectPostsIds,
     selectAll : SelectAllPosts,
     selectById : SelectPostsByIds,
-
 } = PostsAdapter.getSelectors(state => state.PostSlice)
 
 
-
+//Filter for render posts than , that user ids same id of users Slices
 export const ShowPostsForEachUsers = createSelector (
     [SelectAllPosts , (state , UserIds)=> UserIds] ,
 
-
     (AllPosts , UsersIds)=>{
-
         return AllPosts.filter(posts => posts.usersId === UsersIds)
-
     }
 )
-
-
-
 
 
 const PostSlice = createSlice({
@@ -68,27 +53,15 @@ const PostSlice = createSlice({
             PostsAdapter.upsertMany(state , action.payload)
             // console.log(action.payload)
         },
-        [GetPosts.rejected] : (state , action) =>{
-
-        },
-
-        [SendPost.pending] : (state , action) => {
+        [SendPost.pending] : (state) => {
             state.status = 'idle'
         },
         [SendPost.fulfilled] : (state , action) => {
             state.status = 'success'
             PostsAdapter.addOne = action.payload
-
-            // console.log(action.payload)
-        },
-        [SendPost.rejected] : (state , action) =>
-        {
-            // console.log(action)
         },
     }
-
 })
 
 export default PostSlice.reducer
-
 export const {IncreaseReaction} = PostSlice.actions

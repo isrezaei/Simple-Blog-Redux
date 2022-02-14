@@ -4,25 +4,20 @@ import {SendPost} from "../Posts/PostSlice";
 
 export default function AddNew ()
 {
-
     const [Title , SetTitle] = useState('')
     const [Author , SetAuthor] = useState('')
     const [Content , SetContent] = useState('')
     const dispatch = useDispatch()
 
-
-    const HandelSendPost = () => {
-
-         dispatch(SendPost({Title , Author , Content}))
+    const HandelSendPost = async () => {
+       await dispatch(SendPost({Title , Author , Content}))
 
         SetTitle('')
         SetAuthor('')
         SetContent('')
-
     }
 
-
-
+    const AllowToSave = () => [Title , Author , Content].every(Boolean)
 
     return (
         <section>
@@ -38,7 +33,7 @@ export default function AddNew ()
                 <label htmlFor="postContent">Content:</label>
                 <textarea value={Content} onChange={event => SetContent(event.target.value)} id="postContent" name="postContent"> </textarea>
 
-                <button onClick={HandelSendPost} type="button">Save Post</button>
+                <button disabled={!AllowToSave()} onClick={HandelSendPost} type="button">Save Post</button>
 
             </form>
         </section>

@@ -6,6 +6,7 @@ import {Store} from "./Store";
 import {LocalStorageSetData} from "./Database/LocalStorageSetData";
 import {BrowserRouter} from "react-router-dom";
 
+//Get data and set to localstorage when started project
 LocalStorageSetData()
 
 ReactDOM.render(

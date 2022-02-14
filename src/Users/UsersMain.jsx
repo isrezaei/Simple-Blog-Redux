@@ -1,6 +1,5 @@
 import {useSelector} from "react-redux";
 import {SelectAllUsers} from "./UserSlice";
-import UsersShow from "./UsersShow";
 import {Link} from "react-router-dom";
 
 export default function UsersMain ()

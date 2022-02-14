@@ -5,7 +5,6 @@ export default function LocalSetNewData (NewData)
     const {Title , Author , Content} = NewData
 
     const OldData = JSON.parse(localStorage.getItem('SetData'))
-
     // console.log(OldData)
 
     const UUIDS = faker.datatype.uuid()
@@ -15,7 +14,6 @@ export default function LocalSetNewData (NewData)
         firstName : Author,
         lastName : ''
     }
-
     const AddNewPost = {
         id : faker.datatype.uuid(),
         title : Title,
@@ -30,23 +28,10 @@ export default function LocalSetNewData (NewData)
         },
         usersId : UUIDS
     }
-
-
-
-
     const Data = {
         posts : [ ...OldData.posts , AddNewPost],
         users : [...OldData.users , AddNewUsers]
     }
-
-
-
-
-
-
-
-
-
 
 
     return localStorage.setItem('SetData' , JSON.stringify(Data))

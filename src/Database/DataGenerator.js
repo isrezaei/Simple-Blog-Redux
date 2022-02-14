@@ -1,6 +1,5 @@
 import faker from "@faker-js/faker";
 
-
 export const DataGenerator = () =>
 {
     const SourceData =
@@ -41,7 +40,6 @@ export const DataGenerator = () =>
         I++ ;
     }
     while (I < 6)
-
 
     return {SourceData}
 }

@@ -10,9 +10,7 @@ export default function Header ()
                     <div className="navLinks">
                         <Link to="/">Posts</Link>
                         <Link to="/users">Users</Link>
-                        <Link to="/notifications">Notifications <span className="badge">5</span></Link>
                     </div>
-                    <button className="button">Refresh Notifications</button>
                 </div>
             </section>
         </nav>

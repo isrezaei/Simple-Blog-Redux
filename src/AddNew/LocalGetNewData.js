@@ -2,8 +2,10 @@ import LocalSetNewData from "./LocalSetNewData";
 
 export default function LocalGetNewData (NewData)
 {
+    //Set new posts in localstorage
     LocalSetNewData(NewData)
 
+    //Get new localstorage
     return new Promise((resolve, reject) => {
 
         const Data = JSON.parse(localStorage.getItem('SetData'))

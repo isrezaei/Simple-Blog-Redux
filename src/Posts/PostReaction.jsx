@@ -14,13 +14,9 @@ export default function PostReaction ({Reactions , PostId})
 
     const dispatch = useDispatch()
 
-
     const HandelIncreaseReaction = (KeyEachReactions) => {
         dispatch(IncreaseReaction({KeyEachReactions , PostId}))
     }
-
-
-
 
    return Object.keys(Reactions).map(KeyEachReactions => {
       return (

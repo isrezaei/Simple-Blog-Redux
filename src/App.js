@@ -7,26 +7,18 @@ import {Routes , Route} from "react-router-dom";
 import './index.css'
 import './primitiveui.css'
 
-
 function App() {
     return (
         <>
             <Header/>
             <div className='App'>
-
-
-
-
                 <Routes>
                     <Route path={'/'} exact element={<PostMain/>}/>
                     <Route path={'/users'} exact element={<UsersMain/>}/>
                     <Route path={'/posts/:PostIds'} element={<ViewPost/>}/>
                     <Route path={'/users/:UsersIds'} element={<UsersShow/>}/>
                 </Routes>
-
-
             </div>
-
         </>
     )
 }

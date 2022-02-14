@@ -14,21 +14,17 @@ export default function ViewPost ()
 
     const { id , content , date , reactions , title , usersId } = PostsItems
 
-
     return (
         <section className="posts-list">
             <h2>Posts</h2>
-
             <article className="post-excerpt">
                 <h3>{title}</h3>
                 <div>
                     <PostsName PostsUserIds={usersId}/>
                     <PostsTime date={date}/>
                 </div>
-
                 <p className="post-content">{content}</p>
                 <PostReaction Reactions={reactions} PostId={id}/>
-
             </article>
         </section>
     )

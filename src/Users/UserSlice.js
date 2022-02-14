@@ -1,8 +1,6 @@
 import {createSlice ,createAsyncThunk , createEntityAdapter} from "@reduxjs/toolkit";
 import {Server} from "../Database/Server";
 
-
-
 export const GetUsers = createAsyncThunk('GetUsers' , ()=> {
     return Server().then(Response => Response.users)
 })
@@ -14,15 +12,9 @@ const initialState = UserAdapter.getInitialState({
 })
 
 export const {
-
-    selectIds : SelectUsersIds,
     selectAll : SelectAllUsers,
     selectById : SelectUsersByIds,
-
 } = UserAdapter.getSelectors(state => state.UsersSlice)
-
-
-
 
 const UsersSlice = createSlice({
     name : 'Users',
@@ -30,7 +22,7 @@ const UsersSlice = createSlice({
     reducers : {} ,
     extraReducers : {
 
-        [GetUsers.pending] : (state , action) =>
+        [GetUsers.pending] : (state) =>
         {
             state.status = 'Pending'
         },
@@ -38,10 +30,6 @@ const UsersSlice = createSlice({
         {
             state.status = 'Success'
             UserAdapter.upsertMany(state , action.payload)
-        },
-        [GetUsers.rejected] : (state , action) =>
-        {
-
         }
     }
 })
